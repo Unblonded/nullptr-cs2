@@ -163,6 +163,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="hacks\aimbot.h" />
+    <ClInclude Include="offsets\animationsystem_dll.hpp" />
+    <ClInclude Include="offsets\buttons.hpp" />
+    <ClInclude Include="offsets\client_dll.hpp" />
+    <ClInclude Include="offsets\engine2_dll.hpp" />
+    <ClInclude Include="offsets\host_dll.hpp" />
+    <ClInclude Include="offsets\interfaces.hpp" />
+    <ClInclude Include="offsets\materialsystem2_dll.hpp" />
+    <ClInclude Include="offsets\networksystem_dll.hpp" />
+    <ClInclude Include="offsets\offsets.hpp" />
+    <ClInclude Include="offsets\panorama_dll.hpp" />
+    <ClInclude Include="offsets\particles_dll.hpp" />
+    <ClInclude Include="offsets\pulse_system_dll.hpp" />
+    <ClInclude Include="offsets\rendersystemdx11_dll.hpp" />
+    <ClInclude Include="offsets\resourcesystem_dll.hpp" />
+    <ClInclude Include="offsets\scenesystem_dll.hpp" />
+    <ClInclude Include="offsets\schemasystem_dll.hpp" />
+    <ClInclude Include="offsets\server_dll.hpp" />
+    <ClInclude Include="offsets\soundsystem_dll.hpp" />
+    <ClInclude Include="offsets\vphysics2_dll.hpp" />
+    <ClInclude Include="offsets\worldrenderer_dll.hpp" />
     <ClInclude Include="util\includes.h" />
     <ClInclude Include="util\mem.h" />
     <ClInclude Include="util\hkinc.h" />

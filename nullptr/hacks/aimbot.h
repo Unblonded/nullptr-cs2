@@ -6,6 +6,17 @@ namespace Aimbot {
     inline float smoothing = 6.0f;
     inline bool enabled = true;
 
+    struct CTraceFilter {
+        std::uintptr_t m_skip_entity;
+    };
+
+    struct CGameTrace {
+        std::uintptr_t m_pEntity;
+        float fraction;
+        // Add more fields if needed
+    };
+
+
     static Vector3 SmoothAngle(const Vector3& from, const Vector3& to, float factor) {
         Vector3 delta = to - from;
         delta.Normalize();
@@ -56,6 +67,11 @@ namespace Aimbot {
         return sqrtf(delta.x * delta.x + delta.y * delta.y);
     }
 
+    static bool IsVisible(uintptr_t entity, int localPlayerIndex) {
+        uint64_t spottedByMask = mem.Read<uint64_t>(entity + cs2_dumper::schemas::client_dll::C_CSPlayerPawn::m_entitySpottedState + cs2_dumper::schemas::client_dll::EntitySpottedState_t::m_bSpottedByMask);
+        return (spottedByMask & (1ULL << localPlayerIndex)) != 0;
+    }
+
     static void RunOnce() {
         if (!enabled) return;
 
@@ -89,6 +105,10 @@ namespace Aimbot {
             int health = mem.Read<int>(entity + cs2_dumper::schemas::client_dll::C_BaseEntity::m_iHealth);
             int team = mem.Read<int>(entity + cs2_dumper::schemas::client_dll::C_BaseEntity::m_iTeamNum);
             if (health <= 0 || team == localTeam) continue;
+
+            // Use the fixed visibility check with localPlayer
+            int localIndex = mem.Read<int>(mem.client + cs2_dumper::schemas::client_dll::C_CSPlayerPawnBase::m_iIDEntIndex);
+            if (!IsVisible(entity, localIndex)) continue;
 
             Vector3 head = GetBonePosition(entity, 6);
             if (head.IsZero()) continue;

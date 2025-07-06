@@ -14,12 +14,12 @@ namespace cs2_dumper {
             // Parent: CAnimScriptBase
             // Field count: 1
             namespace EmptyTestScript {
-                constexpr std::ptrdiff_t m_hTest = 0x10; // CAnimScriptParam<float32>
+                inline constexpr std::ptrdiff_t m_hTest = 0x10; // CAnimScriptParam<float32>
             }
             // Parent: None
             // Field count: 1
             namespace CAnimScriptBase {
-                constexpr std::ptrdiff_t m_bIsValid = 0x8; // bool
+                inline constexpr std::ptrdiff_t m_bIsValid = 0x8; // bool
             }
         }
     }

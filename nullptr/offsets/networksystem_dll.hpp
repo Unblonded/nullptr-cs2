@@ -14,7 +14,7 @@ namespace cs2_dumper {
             // Parent: None
             // Field count: 1
             namespace ChangeAccessorFieldPathIndex_t {
-                constexpr std::ptrdiff_t m_Value = 0x0; // int32
+                inline constexpr std::ptrdiff_t m_Value = 0x0; // int32
             }
         }
     }

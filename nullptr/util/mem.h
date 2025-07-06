@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include <Windows.h>
 
 class Memory {
@@ -32,6 +33,13 @@ public:
         __except (EXCEPTION_EXECUTE_HANDLER) {
             return false;
         }
+    }
+
+    template <typename T, typename... Args>
+    static T CallVFunc(std::uintptr_t instance, int index, Args... args) {
+        using Fn = T(__thiscall*)(void*, Args...);
+        void* vfunc = (*reinterpret_cast<void***>(instance))[index];
+        return reinterpret_cast<Fn>(vfunc)((void*)instance, args...);
     }
 
     static void loadModules() {
